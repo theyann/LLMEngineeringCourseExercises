@@ -1,4 +1,4 @@
-from .messages import Messages
+from .messages import Messages, MultiAssistantTypes
 
 class CodeExplanationMessages(Messages):
     def __init__(
@@ -8,6 +8,7 @@ class CodeExplanationMessages(Messages):
             additional_context: str = "",
             additional_system_directives: str = "",
             stream: bool = True,
+            assistant_types: MultiAssistantTypes | None = None
     ) -> None:
         default_system = "You are a helpful code explanation assistant. Explain the code clearly, including its purpose, logic, and any notable patterns or techniques. Always respond with markdown."
         if additional_system_directives:
@@ -20,5 +21,6 @@ class CodeExplanationMessages(Messages):
         super().__init__(
             system = default_system,
             user = user_message,
-            stream = stream
+            stream = stream,
+            assistant_types = assistant_types
         )
